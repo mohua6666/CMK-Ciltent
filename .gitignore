@@ -1,0 +1,47 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+
+# Android Studio
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.ap_
+*.aab
+
+# Local config
+*.log
+local.properties
+
+# Uploads
+.uploads/
+
+# Compressed files
+*.zip
+*.rar
+*.7z
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Downloaded info
+DOWNLOAD_INFO.md
+SPEC.md
