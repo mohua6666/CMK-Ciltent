@@ -42,23 +42,30 @@ jobs:
       - name: List APK files
         run: ls -la app/build/outputs/apk/debug/
 
-      - name: Upload APK to Release
-        uses: softprops/action-gh-release@v1
+      - name: Upload APK as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MK-PVP-Client-APK
+          path: app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 30
+
+      - name: Create and Upload to Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/heads/')
         with:
           files: app/build/outputs/apk/debug/app-debug.apk
-          name: MK PVP Client v1.0
-          tag_name: v1.0
-          release_name: MK PVP Client Debug APK
+          name: MK PVP Client
+          tag_name: latest
+          make_latest: true
           body: |
             ## MK PVP Client
             
             最新构建的调试 APK
             
-            **版本:** 1.0
             **构建时间:** ${{ github.event.head_commit.timestamp }}
             
-            ### 下载说明
-            点击上方的 `app-debug.apk` 文件进行下载。
+            ### 下载
+            点击上方的 `app-debug.apk` 文件下载。
             
             ### 安装说明
             1. 下载 APK 文件到手机
