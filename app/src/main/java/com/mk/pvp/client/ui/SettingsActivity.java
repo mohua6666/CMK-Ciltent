@@ -85,26 +85,54 @@ public class SettingsActivity extends AppCompatActivity {
         keymacroKeySpinner.setAdapter(keyAdapter);
 
         memorySeekBar.setMax(8);
-        memorySeekBar.setOnSeekBarChangeListener((seekBar, progress, fromUser) -> {
-            int memory = (progress + 1) * 512;
-            memoryValueText.setText(memory + " MB");
+        memorySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                int memory = (progress + 1) * 512;
+                memoryValueText.setText(memory + " MB");
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
         reachSeekBar.setMax(20);
-        reachSeekBar.setOnSeekBarChangeListener((seekBar, progress, fromUser) -> {
-            float reach = 3.0f + progress / 10.0f;
-            reachValueText.setText(String.format("%.1f", reach));
+        reachSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                float reach = 3.0f + progress / 10.0f;
+                reachValueText.setText(String.format("%.1f", reach));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
         clickSpeedSeekBar.setMax(20);
-        clickSpeedSeekBar.setOnSeekBarChangeListener((seekBar, progress, fromUser) -> {
-            float speed = 5.0f + progress;
-            clickSpeedValueText.setText(String.format("%.0f", speed));
+        clickSpeedSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                float speed = 5.0f + progress;
+                clickSpeedValueText.setText(String.format("%.0f", speed));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
         keymacroDelaySeekBar.setMax(100);
-        keymacroDelaySeekBar.setOnSeekBarChangeListener((seekBar, progress, fromUser) -> {
-            keymacroDelayValueText.setText(progress + " ms");
+        keymacroDelaySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                keymacroDelayValueText.setText(progress + " ms");
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
         saveButton.setOnClickListener(v -> saveSettings());
