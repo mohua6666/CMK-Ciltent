@@ -14,17 +14,14 @@ import androidx.appcompat.widget.Toolbar;
 import com.mk.pvp.client.R;
 import com.mk.pvp.client.data.model.KeyMapping;
 import com.mk.pvp.client.data.repository.FileRepository;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class KeyMappingActivity extends AppCompatActivity {
     private Toolbar toolbar;
-    private TextView emptyText;
     private Button saveButton;
     private Button resetButton;
-    private FloatingActionButton addButton;
 
     private FileRepository fileRepository;
     private List<KeyMapping> keyMappings = new ArrayList<>();
@@ -43,14 +40,11 @@ public class KeyMappingActivity extends AppCompatActivity {
 
     private void initViews() {
         toolbar = findViewById(R.id.toolbar);
-        emptyText = findViewById(R.id.empty_text);
         saveButton = findViewById(R.id.save_button);
         resetButton = findViewById(R.id.reset_button);
-        addButton = findViewById(R.id.add_button);
 
         saveButton.setOnClickListener(v -> saveKeyMappings());
         resetButton.setOnClickListener(v -> resetKeyMappings());
-        addButton.setOnClickListener(v -> showAddKeyDialog());
     }
 
     private void setupToolbar() {
@@ -63,12 +57,6 @@ public class KeyMappingActivity extends AppCompatActivity {
 
     private void loadKeyMappings() {
         keyMappings = fileRepository.getSavedKeyMappings();
-
-        if (keyMappings.isEmpty()) {
-            emptyText.setVisibility(View.VISIBLE);
-        } else {
-            emptyText.setVisibility(View.GONE);
-        }
     }
 
     private void saveKeyMappings() {
@@ -84,12 +72,7 @@ public class KeyMappingActivity extends AppCompatActivity {
     private void resetKeyMappings() {
         keyMappings.clear();
         fileRepository.saveKeyMappings(keyMappings);
-        emptyText.setVisibility(View.VISIBLE);
         Toast.makeText(this, "已重置按键映射", Toast.LENGTH_SHORT).show();
-    }
-
-    private void showAddKeyDialog() {
-        Toast.makeText(this, "添加按键映射功能", Toast.LENGTH_SHORT).show();
     }
 
     @Override

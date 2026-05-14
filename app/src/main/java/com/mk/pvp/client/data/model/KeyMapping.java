@@ -1,7 +1,5 @@
 package com.mk.pvp.client.data.model;
 
-import java.util.List;
-
 public class KeyMapping {
     private String name;
     private String keyCode;

@@ -19,7 +19,7 @@
             android:id="@+id/selected_indicator"
             android:layout_width="match_parent"
             android:layout_height="4dp"
-            android:background="@color/accent_day"
+            android:background="@color/accent"
             android:visibility="gone" />
 
         <TextView
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="原版"
-            android:textColor="@color/accent_day"
+            android:textColor="@color/accent"
             android:textSize="10sp" />
 
     </LinearLayout>

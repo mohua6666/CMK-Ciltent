@@ -63,10 +63,6 @@
             android:name=".ui.PVPClientActivity"
             android:theme="@style/Theme.MKPVPClient" />
 
-        <activity
-            android:name=".ui.DownloadActivity"
-            android:theme="@style/Theme.MKPVPClient" />
-
     </application>
 
 </manifest>

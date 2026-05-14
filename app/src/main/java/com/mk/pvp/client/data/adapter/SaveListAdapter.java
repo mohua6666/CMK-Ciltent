@@ -64,7 +64,7 @@ public class SaveListAdapter extends RecyclerView.Adapter<SaveListAdapter.ViewHo
         TextView sizeText;
         TextView dateText;
         ImageButton backupButton;
-        ImageButton deleteButton;
+        ImageButton menuButton;
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -73,7 +73,7 @@ public class SaveListAdapter extends RecyclerView.Adapter<SaveListAdapter.ViewHo
             sizeText = itemView.findViewById(R.id.save_size);
             dateText = itemView.findViewById(R.id.save_date);
             backupButton = itemView.findViewById(R.id.backup_button);
-            deleteButton = itemView.findViewById(R.id.delete_button);
+            menuButton = itemView.findViewById(R.id.menu_button);
         }
 
         void bind(GameSave save) {
@@ -89,7 +89,7 @@ public class SaveListAdapter extends RecyclerView.Adapter<SaveListAdapter.ViewHo
                 }
             });
 
-            deleteButton.setOnClickListener(v -> {
+            menuButton.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onDelete(save);
                 }

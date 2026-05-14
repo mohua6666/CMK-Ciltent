@@ -19,6 +19,7 @@ import com.mk.pvp.client.data.adapter.VersionAdapter;
 import com.mk.pvp.client.data.model.GameVersion;
 import com.mk.pvp.client.data.repository.FileRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VersionManagerActivity extends AppCompatActivity {
@@ -26,7 +27,7 @@ public class VersionManagerActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
     private TextView emptyText;
-    private Button downloadButton;
+    private Button addButton;
 
     private FileRepository fileRepository;
     private VersionAdapter adapter;
@@ -49,9 +50,9 @@ public class VersionManagerActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         progressBar = findViewById(R.id.progress_bar);
         emptyText = findViewById(R.id.empty_text);
-        downloadButton = findViewById(R.id.download_button);
+        addButton = findViewById(R.id.add_button);
 
-        downloadButton.setOnClickListener(v -> showDownloadDialog());
+        addButton.setOnClickListener(v -> showDownloadDialog());
     }
 
     private void setupToolbar() {
@@ -64,7 +65,7 @@ public class VersionManagerActivity extends AppCompatActivity {
 
     private void setupRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new VersionAdapter(null, version -> {
+        adapter = new VersionAdapter(new ArrayList<>(), version -> {
             Toast.makeText(this, "已选择版本: " + version.getId(), Toast.LENGTH_SHORT).show();
         });
         recyclerView.setAdapter(adapter);

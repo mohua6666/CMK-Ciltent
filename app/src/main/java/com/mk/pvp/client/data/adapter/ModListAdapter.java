@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Switch;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -57,29 +57,29 @@ public class ModListAdapter extends RecyclerView.Adapter<ModListAdapter.ViewHold
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView nameText;
         TextView sizeText;
-        Switch enableSwitch;
-        ImageButton deleteButton;
+        CheckBox enableCheckbox;
+        ImageButton menuButton;
 
         ViewHolder(View itemView) {
             super(itemView);
             nameText = itemView.findViewById(R.id.mod_name);
             sizeText = itemView.findViewById(R.id.mod_size);
-            enableSwitch = itemView.findViewById(R.id.enable_switch);
-            deleteButton = itemView.findViewById(R.id.delete_button);
+            enableCheckbox = itemView.findViewById(R.id.enable_checkbox);
+            menuButton = itemView.findViewById(R.id.menu_button);
         }
 
         void bind(ModInfo mod) {
             nameText.setText(mod.getName());
             sizeText.setText(mod.getFormattedSize());
-            enableSwitch.setChecked(mod.isEnabled());
+            enableCheckbox.setChecked(mod.isEnabled());
 
-            enableSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            enableCheckbox.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 if (listener != null) {
                     listener.onToggle(mod, isChecked);
                 }
             });
 
-            deleteButton.setOnClickListener(v -> {
+            menuButton.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onDelete(mod);
                 }

@@ -23,8 +23,6 @@ public class SettingsActivity extends AppCompatActivity {
     private Spinner rendererSpinner;
     private SeekBar memorySeekBar;
     private TextView memoryValueText;
-    private SeekBar sensitivitySeekBar;
-    private TextView sensitivityValueText;
     private CheckBox showFPSCheckbox;
     private CheckBox showPingCheckbox;
     private CheckBox autoJumpCheckbox;
@@ -61,8 +59,6 @@ public class SettingsActivity extends AppCompatActivity {
         rendererSpinner = findViewById(R.id.renderer_spinner);
         memorySeekBar = findViewById(R.id.memory_seek_bar);
         memoryValueText = findViewById(R.id.memory_value_text);
-        sensitivitySeekBar = findViewById(R.id.sensitivity_seek_bar);
-        sensitivityValueText = findViewById(R.id.sensitivity_value_text);
         showFPSCheckbox = findViewById(R.id.show_fps_checkbox);
         showPingCheckbox = findViewById(R.id.show_ping_checkbox);
         autoJumpCheckbox = findViewById(R.id.auto_jump_checkbox);
@@ -92,12 +88,6 @@ public class SettingsActivity extends AppCompatActivity {
         memorySeekBar.setOnSeekBarChangeListener((seekBar, progress, fromUser) -> {
             int memory = (progress + 1) * 512;
             memoryValueText.setText(memory + " MB");
-        });
-
-        sensitivitySeekBar.setMax(20);
-        sensitivitySeekBar.setOnSeekBarChangeListener((seekBar, progress, fromUser) -> {
-            float sensitivity = (progress + 5) / 10.0f;
-            sensitivityValueText.setText(String.format("%.1f", sensitivity));
         });
 
         reachSeekBar.setMax(20);
@@ -141,10 +131,6 @@ public class SettingsActivity extends AppCompatActivity {
         int memoryProgress = settingsManager.getMaxMemory() / 512 - 1;
         memorySeekBar.setProgress(Math.max(0, Math.min(8, memoryProgress)));
         memoryValueText.setText(settingsManager.getMaxMemory() + " MB");
-
-        int sensitivityProgress = (int) (settingsManager.getAppSettings().getMouseSensitivity() * 10) - 5;
-        sensitivitySeekBar.setProgress(Math.max(0, Math.min(20, sensitivityProgress)));
-        sensitivityValueText.setText(String.format("%.1f", settingsManager.getAppSettings().getMouseSensitivity()));
 
         showFPSCheckbox.setChecked(pvpSettings.isShowFPS());
         showPingCheckbox.setChecked(pvpSettings.isShowPing());
